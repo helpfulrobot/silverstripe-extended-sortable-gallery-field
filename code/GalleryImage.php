@@ -1,7 +1,8 @@
 <?php
 
 
-class GalleryImage extends DataExtension {
+class GalleryImage extends DataExtension
+{
 
     private static $db = array(
         'Description' => 'Text',
@@ -12,8 +13,8 @@ class GalleryImage extends DataExtension {
 
 
 
-    public function updateCMSFields(FieldList $fields) {
-
+    public function updateCMSFields(FieldList $fields)
+    {
         $fields->addFieldsToTab('Root.Main',
             array(
                 new TextareaField("Description")
@@ -25,7 +26,5 @@ class GalleryImage extends DataExtension {
                 new NumericField("SortOrder")
             )
         );
-
     }
-
 }

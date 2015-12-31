@@ -1,21 +1,21 @@
 <?php
 
 
-class GalleryImageController extends Controller {
+class GalleryImageController extends Controller
+{
 
     //basic security for controller
-    static $allowed_actions = array(
+    public static $allowed_actions = array(
         'Sort' => 'ADMIN'
     );
 
-    function init(){
-
+    public function init()
+    {
         parent::init();
-
     }
 
-    function Sort() {
-
+    public function Sort()
+    {
         $pageID = $_GET['pageID'];
         $newPosition  = $_GET['newPosition'];
         $oldPosition  = $_GET['oldPosition'];
@@ -34,15 +34,20 @@ class GalleryImageController extends Controller {
         $loop = 0;
         $newSortOrder = 0;
         //echo 'x<br>';
-        foreach($Images as $Image){
+        foreach ($Images as $Image) {
             /** @var Image $Image */
 //            echo 'Old:<br>';
 //            echo $Image->ID."<br>";
 //            echo $Image->SortOrder."<br>";
 
-            if ($loop == $newPosition) { $newSortOrder++; }
+            if ($loop == $newPosition) {
+                $newSortOrder++;
+            }
             $Image->SortOrder = $newSortOrder;
-            if ($loop == $oldPosition) { $newSortOrder--;  $Image->SortOrder = $newPosition; }
+            if ($loop == $oldPosition) {
+                $newSortOrder--;
+                $Image->SortOrder = $newPosition;
+            }
 
             $Image->write();
 
@@ -52,8 +57,5 @@ class GalleryImageController extends Controller {
             $loop++;
             $newSortOrder++;
         }
-
     }
-
-
 }
